@@ -1,0 +1,43 @@
+# Running ckan with custom host and port
+ckan -c <path to config> run --host <0.0.0.0> --port <5000>
+
+# In datapusher container set /etc/hosts
+* *
+<ckan container ip>	<site host>
+use xlrd==1.2.0
+# Also run ckan at port 80
+# Add ckan container ip to known host of datapusher
+docker exec -ti datapusher /bin/sh -c "echo ${IP_CKAN}    ${Hostname_CKAN} >
+> /etc/hosts"
+export IP_CKAN=$(docker inspect -f "{{ .NetworkSettings.Networks.docker_default.IPAddress }}" ckan)
+# Add user
+docker exec ckan ckan -c /etc/ckan/ckan.ini user add admin_user email=admin@localhost password=12345678
+docker exec ckan ckan -c /etc/ckan/ckan.ini sysadmin add admin_user
+
+# Setup datastore
+docker exec ckan ckan -c /etc/ckan/ckan.ini datastore set-permissions | docker exec -i db psql -U ckan
+
+# CKAN variables
+sqlalchemy.url = postgresql://ckan_default:pass@localhost/ckan_default
+
+ckan.datastore.write_url = postgresql://ckan_default:pass@localhost/datastore_default
+ckan.datastore.read_url = postgresql://datastore_default:pass@localhost/datastore_default
+
+ckan.site_url = 
+
+ckan.site_id = default
+solr_url
+
+ckan.plugins = stats text_view image_view recline_view datastore datapusher
+
+ckan.views.default_views = image_view text_view recline_view
+
+ckan.storage_path = /var/lib/ckan/default
+ckan.max_resource_size = 10 (MB)
+ckan.max_image_size = 2 (MB)
+
+# Datapusher settings
+ckan.datapusher.formats = csv xls xlsx tsv application/csv application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+ckan.datapusher.url = http://127.0.0.1:8800/
+ckan.datapusher.callback_url_base = http://ckan:5000/
+ckan.datapusher.assume_task_stale_after = 3600
