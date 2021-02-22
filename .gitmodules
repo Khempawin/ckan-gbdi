@@ -1,3 +1,0 @@
-[submodule "ckan"]
-	path = ckan
-	url = https://github.com/ckan/ckan.git
