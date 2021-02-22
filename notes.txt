@@ -1,6 +1,8 @@
 # Running ckan with custom host and port
 ckan -c <path to config> run --host <0.0.0.0> --port <5000>
 
+# Use Unix LF instead of CRLF in contrib\docker\postgresql\docker-entrypoint-initdb.d\00_create_datastore.sh
+
 # In datapusher container set /etc/hosts
 * *
 <ckan container ip>	<site host>
