@@ -32,14 +32,14 @@ set_environment () {
   export CKAN_SMTP_PASSWORD=${CKAN_SMTP_PASSWORD}
   export CKAN_SMTP_MAIL_FROM=${CKAN_SMTP_MAIL_FROM}
   export CKAN_MAX_UPLOAD_SIZE_MB=${CKAN_MAX_UPLOAD_SIZE_MB}
-  export CKAN_PLUGINS="${CKAN_PLUGINS}"
+  export CKAN__PLUGINS="${CKAN__PLUGINS}"
 }
 
 write_config () {
   echo "Generating config at ${CONFIG}..."
   ckan generate config "$CONFIG"
-  echo "${CKAN_PLUGINS}"
-  ckan config-tool "$CONFIG" ckan.plugins="${CKAN_PLUGINS}"
+  echo "${CKAN__PLUGINS}"
+  ckan config-tool "$CONFIG" ckan.plugins="${CKAN__PLUGINS}"
 }
 
 # Wait for PostgreSQL
