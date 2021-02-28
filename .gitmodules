@@ -13,3 +13,6 @@
 [submodule "ckanext-dcat"]
 	path = ckanext-dcat
 	url = https://github.com/ckan/ckanext-dcat.git
+[submodule "ckanext-envvars"]
+	path = ckanext-envvars
+	url = https://github.com/okfn/ckanext-envvars.git
