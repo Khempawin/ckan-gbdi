@@ -4,3 +4,6 @@
 [submodule "ckanext-scheming"]
 	path = ckanext-scheming
 	url = https://github.com/ckan/ckanext-scheming.git
+[submodule "ckanext-hierarchy"]
+	path = ckanext-hierarchy
+	url = https://github.com/ckan/ckanext-hierarchy.git
