@@ -40,6 +40,7 @@ RUN python3 -m venv $CKAN_VENV && \
 
 # Setup CKAN
 ADD ckan/ $CKAN_VENV/src/ckan/
+ADD ckanext-scheming/ $CKAN_VENV/src/ckanext-scheming/
 ADD ckan-entrypoint.sh /
 RUN ckan-pip install -U pip && \
     ckan-pip install --upgrade --no-cache-dir -r $CKAN_VENV/src/ckan/requirement-setuptools.txt && \
@@ -48,7 +49,7 @@ RUN ckan-pip install -U pip && \
     ln -s $CKAN_VENV/src/ckan/ckan/config/who.ini $CKAN_CONFIG/who.ini && \
     chmod +x /ckan-entrypoint.sh && \
     chown -R ckan:ckan $CKAN_HOME $CKAN_VENV $CKAN_CONFIG $CKAN_STORAGE_PATH
-
+RUN ckan-pip install $CKAN_VENV/src/ckanext-scheming/
 ENTRYPOINT ["/ckan-entrypoint.sh"]
 
 USER ckan
