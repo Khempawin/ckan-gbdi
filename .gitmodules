@@ -16,3 +16,6 @@
 [submodule "ckanext-harvest"]
 	path = ckanext-harvest
 	url = https://github.com/ckan/ckanext-harvest.git
+[submodule "ckan"]
+	path = ckan
+	url = https://github.com/Khempawin/ckan.git
