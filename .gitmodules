@@ -16,3 +16,6 @@
 [submodule "ckanext-envvars"]
 	path = ckanext-envvars
 	url = https://github.com/okfn/ckanext-envvars.git
+[submodule "ckanext-harvest"]
+	path = ckanext-harvest
+	url = https://github.com/ckan/ckanext-harvest.git
