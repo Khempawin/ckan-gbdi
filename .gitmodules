@@ -7,3 +7,6 @@
 [submodule "ckanext-hierarchy"]
 	path = ckanext-hierarchy
 	url = https://github.com/ckan/ckanext-hierarchy.git
+[submodule "ckanext-thai_gdc"]
+	path = ckanext-thai_gdc
+	url = https://gitlab.nectec.or.th/opend/ckanext-thai_gdc.git
