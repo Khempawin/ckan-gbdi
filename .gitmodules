@@ -10,3 +10,6 @@
 [submodule "ckanext-thai_gdc"]
 	path = ckanext-thai_gdc
 	url = https://gitlab.nectec.or.th/opend/ckanext-thai_gdc.git
+[submodule "ckanext-dcat"]
+	path = ckanext-dcat
+	url = https://github.com/ckan/ckanext-dcat.git
