@@ -40,6 +40,7 @@ RUN python3 -m venv $CKAN_VENV && \
 
 # Setup CKAN
 ADD ckan/ $CKAN_VENV/src/ckan/
+ADD ckanext-envvars/ $CKAN_VENV/src/ckanext-envvars/
 ADD ckanext-scheming/ $CKAN_VENV/src/ckanext-scheming/
 ADD ckanext-hierarchy/ $CKAN_VENV/src/ckanext-hierarchy/
 ADD ckanext-dcat/ $CKAN_VENV/src/ckanext-dcat/
@@ -52,6 +53,7 @@ RUN ckan-pip install -U pip && \
     ln -s $CKAN_VENV/src/ckan/ckan/config/who.ini $CKAN_CONFIG/who.ini && \
     chmod +x /ckan-entrypoint.sh && \
     chown -R ckan:ckan $CKAN_HOME $CKAN_VENV $CKAN_CONFIG $CKAN_STORAGE_PATH
+RUN ckan-pip install $CKAN_VENV/src/ckanext-envvars/
 RUN ckan-pip install $CKAN_VENV/src/ckanext-scheming/
 RUN ckan-pip install $CKAN_VENV/src/ckanext-hierarchy/ && \
     ckan-pip install -r $CKAN_VENV/src/ckanext-hierarchy/requirements.txt
