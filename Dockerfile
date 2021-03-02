@@ -1,6 +1,5 @@
 # See CKAN docs on installation from Docker Compose on usage
 FROM python:3.8.7-buster
-MAINTAINER Open Knowledge
 
 # Install required system packages
 RUN apt-get -q -y update \
@@ -45,21 +44,24 @@ ADD ckanext-scheming/ $CKAN_VENV/src/ckanext-scheming/
 ADD ckanext-hierarchy/ $CKAN_VENV/src/ckanext-hierarchy/
 ADD ckanext-dcat/ $CKAN_VENV/src/ckanext-dcat/
 ADD ckanext-thai_gdc/ $CKAN_VENV/src/ckanext-thai_gdc/
+ADD ckanext-gbdi_theme/ $CKAN_VENV/src/ckanext-gbdi_theme/
 ADD ckan-entrypoint.sh /
-RUN ckan-pip install -U pip && \
-    ckan-pip install --upgrade --no-cache-dir -r $CKAN_VENV/src/ckan/requirement-setuptools.txt && \
-    ckan-pip install --upgrade --no-cache-dir -r $CKAN_VENV/src/ckan/requirements.txt && \
-    ckan-pip install -e $CKAN_VENV/src/ckan/ && \
+RUN . $CKAN_VENV/bin/activate
+RUN pip install -U pip && \
+    pip install --upgrade --no-cache-dir -r $CKAN_VENV/src/ckan/requirement-setuptools.txt && \
+    pip install --upgrade --no-cache-dir -r $CKAN_VENV/src/ckan/requirements.txt && \
+    pip install -e $CKAN_VENV/src/ckan/ && \
     ln -s $CKAN_VENV/src/ckan/ckan/config/who.ini $CKAN_CONFIG/who.ini && \
     chmod +x /ckan-entrypoint.sh && \
     chown -R ckan:ckan $CKAN_HOME $CKAN_VENV $CKAN_CONFIG $CKAN_STORAGE_PATH
-RUN ckan-pip install $CKAN_VENV/src/ckanext-envvars/
-RUN ckan-pip install $CKAN_VENV/src/ckanext-scheming/
-RUN ckan-pip install $CKAN_VENV/src/ckanext-hierarchy/ && \
-    ckan-pip install -r $CKAN_VENV/src/ckanext-hierarchy/requirements.txt
-RUN ckan-pip install $CKAN_VENV/src/ckanext-dcat/ && \
-    ckan-pip install -r $CKAN_VENV/src/ckanext-dcat/requirements.txt
-RUN ckan-pip install $CKAN_VENV/src/ckanext-thai_gdc/
+RUN pip install $CKAN_VENV/src/ckanext-envvars/
+RUN pip install $CKAN_VENV/src/ckanext-scheming/
+RUN pip install $CKAN_VENV/src/ckanext-hierarchy/ && \
+    pip install -r $CKAN_VENV/src/ckanext-hierarchy/requirements.txt
+RUN pip install $CKAN_VENV/src/ckanext-dcat/ && \
+    pip install -r $CKAN_VENV/src/ckanext-dcat/requirements.txt
+RUN pip install $CKAN_VENV/src/ckanext-thai_gdc/
+RUN pip install $CKAN_VENV/src/ckanext-gbdi_theme/
 ENTRYPOINT ["/ckan-entrypoint.sh"]
 
 USER ckan
