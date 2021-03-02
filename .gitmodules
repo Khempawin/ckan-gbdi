@@ -1,3 +1,21 @@
+[submodule "ckanext-scheming"]
+	path = ckanext-scheming
+	url = https://github.com/ckan/ckanext-scheming.git
+[submodule "ckanext-hierarchy"]
+	path = ckanext-hierarchy
+	url = https://github.com/ckan/ckanext-hierarchy.git
+[submodule "ckanext-thai_gdc"]
+	path = ckanext-thai_gdc
+	url = https://gitlab.nectec.or.th/opend/ckanext-thai_gdc.git
+[submodule "ckanext-dcat"]
+	path = ckanext-dcat
+	url = https://github.com/ckan/ckanext-dcat.git
+[submodule "ckanext-envvars"]
+	path = ckanext-envvars
+	url = https://github.com/okfn/ckanext-envvars.git
+[submodule "ckanext-harvest"]
+	path = ckanext-harvest
+	url = https://github.com/ckan/ckanext-harvest.git
 [submodule "ckan"]
 	path = ckan
-	url = https://github.com/ckan/ckan.git
+	url = https://github.com/Khempawin/ckan.git
