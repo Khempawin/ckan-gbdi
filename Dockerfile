@@ -61,7 +61,9 @@ RUN pip install $CKAN_VENV/src/ckanext-hierarchy/ && \
 RUN pip install $CKAN_VENV/src/ckanext-dcat/ && \
     pip install -r $CKAN_VENV/src/ckanext-dcat/requirements.txt
 RUN pip install $CKAN_VENV/src/ckanext-thai_gdc/
-RUN pip install $CKAN_VENV/src/ckanext-gbdi_theme/
+RUN cd $CKAN_VENV/src/ckanext-gbdi_theme/ && \
+    python setup.py develop && \
+    cd $CKAN_CONFIG
 ENTRYPOINT ["/ckan-entrypoint.sh"]
 
 USER ckan
