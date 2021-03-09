@@ -76,8 +76,8 @@ set_environment
 ckan --config "$CONFIG" db init
 ckan --config /etc/ckan/ckan.ini datastore set-permissions | PGPASSWORD=${POSTGRES_PASSWORD} psql -h db -U ckan
 
-echo "USER_EXISTS : $(ckan -c "$CONFIG" user list | grep "name=admin_user")"
-if [ -z "$(ckan -c "$CONFIG" user list | grep "name=admin_user")" ]; then
+echo "USER_EXISTS : $(ckan -c "$CONFIG" user list | grep "name=$DEFAULT_SYSADMIN_USER")"
+if [ -z "$(ckan -c "$CONFIG" user list | grep "name=$DEFAULT_SYSADMIN_USER")" ]; then
   echo "Creating ADMIN_USER"
   ckan --config "$CONFIG" user add $DEFAULT_SYSADMIN_USER email=$DEFAULT_SYSADMIN_EMAIL password=$DEFAULT_SYSADMIN_PASSWORD
   ckan --config "$CONFIG" sysadmin add $DEFAULT_SYSADMIN_USER
