@@ -33,6 +33,9 @@ set_environment () {
   export CKAN_SMTP_MAIL_FROM=${CKAN_SMTP_MAIL_FROM}
   export CKAN_MAX_UPLOAD_SIZE_MB=${CKAN_MAX_UPLOAD_SIZE_MB}
   export CKAN__PLUGINS="${CKAN__PLUGINS}"
+  export DEFAULT_SYSADMIN_USER=${DEFAULT_SYSADMIN_USER}
+  export DEFAULT_SYSADMIN_EMAIL=${DEFAULT_SYSADMIN_EMAIL}
+  export DEFAULT_SYSADMIN_PASSWORD=${DEFAULT_SYSADMIN_PASSWORD}
 }
 
 write_config () {
@@ -76,8 +79,8 @@ ckan --config /etc/ckan/ckan.ini datastore set-permissions | PGPASSWORD=${POSTGR
 echo "USER_EXISTS : $(ckan -c "$CONFIG" user list | grep "name=admin_user")"
 if [ -z "$(ckan -c "$CONFIG" user list | grep "name=admin_user")" ]; then
   echo "Creating ADMIN_USER"
-  ckan --config "$CONFIG" user add admin_user email=admin@localhost password=12345678
-  ckan --config "$CONFIG" sysadmin add admin_user
+  ckan --config "$CONFIG" user add $DEFAULT_SYSADMIN_USER email=$DEFAULT_SYSADMIN_EMAIL password=$DEFAULT_SYSADMIN_PASSWORD
+  ckan --config "$CONFIG" sysadmin add $DEFAULT_SYSADMIN_USER
 else 
   echo "ADMIN_USER exists"
 fi
