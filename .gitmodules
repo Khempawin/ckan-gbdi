@@ -19,3 +19,6 @@
 [submodule "ckan"]
 	path = ckan
 	url = https://github.com/Khempawin/ckan.git
+[submodule "ckanext-xloader"]
+	path = ckanext-xloader
+	url = https://github.com/ckan/ckanext-xloader.git
