@@ -42,6 +42,7 @@ ADD ckan/ $CKAN_VENV/src/ckan/
 ADD ckanext-envvars/ $CKAN_VENV/src/ckanext-envvars/
 ADD ckanext-scheming/ $CKAN_VENV/src/ckanext-scheming/
 ADD ckanext-hierarchy/ $CKAN_VENV/src/ckanext-hierarchy/
+ADD ckanext-harvest/ $CKAN_VENV/src/ckanext-harvest/
 ADD ckanext-dcat/ $CKAN_VENV/src/ckanext-dcat/
 ADD ckanext-thai_gdc/ $CKAN_VENV/src/ckanext-thai_gdc/
 ADD ckanext-gbdi_theme/ $CKAN_VENV/src/ckanext-gbdi_theme/
@@ -58,6 +59,8 @@ RUN pip install $CKAN_VENV/src/ckanext-envvars/
 RUN pip install $CKAN_VENV/src/ckanext-scheming/
 RUN pip install $CKAN_VENV/src/ckanext-hierarchy/ && \
     pip install -r $CKAN_VENV/src/ckanext-hierarchy/requirements.txt
+RUN pip install $CKAN_VENV/src/ckanext-harvest/ && \
+    pip install -r $CKAN_VENV/src/ckanext-harvest/pip-requirements.txt    
 RUN pip install $CKAN_VENV/src/ckanext-dcat/ && \
     pip install -r $CKAN_VENV/src/ckanext-dcat/requirements.txt
 RUN pip install $CKAN_VENV/src/ckanext-thai_gdc/
